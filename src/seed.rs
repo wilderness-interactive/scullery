@@ -182,13 +182,17 @@ pub fn skog_grautr_recipe() -> Recipe {
         servings: 1,
         steps: vec![
             CookingStep {
-                instruction: "Pour 250ml water into a small saucepan".to_owned(),
+                instruction: "Pour water into a small saucepan \u{2014} \
+                    80ml for 80g serving (with protein), 125ml for 125g standalone"
+                    .to_owned(),
                 duration_minutes: None,
-                water_ml: Some(250),
+                water_ml: Some(125),
                 heat: None,
             },
             CookingStep {
-                instruction: "Add one serving of Skógargrautr mix".to_owned(),
+                instruction: "Add Skógargrautr mix \u{2014} \
+                    80g when pairing with salmon/eggs, 125g standalone"
+                    .to_owned(),
                 duration_minutes: None,
                 water_ml: None,
                 heat: None,
