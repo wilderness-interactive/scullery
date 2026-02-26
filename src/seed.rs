@@ -82,12 +82,12 @@ pub fn skog_grautr_sources() -> Vec<Source> {
             notes: Some("Naked Oats, Organic Wholegrain — non-GF (mixing with wheat anyway)".to_owned()),
         },
         Source {
-            supplier: "Forest Fungi".to_owned(),
-            url: Some("https://forestfungi.co.uk/product/dried-porcini-mushrooms/".to_owned()),
+            supplier: "Merry Hill Mushrooms".to_owned(),
+            url: Some("https://www.merryhill-mushrooms.co.uk/dried-porcini-500".to_owned()),
             ingredient: "Porcini Mushrooms".to_owned(),
-            pack_grams: Some(50.0),
-            price_pence: Some(895),
-            notes: Some("British-grown in Devon — closest supplier to Cornwall".to_owned()),
+            pack_grams: Some(250.0),
+            price_pence: Some(1900),
+            notes: Some("Dried Premium Porcini 250g \u{2014} matched to grain supply (~30-40 servings)".to_owned()),
         },
     ]
 }
@@ -310,14 +310,14 @@ pub fn raw_storage_mixes() -> Vec<Mix> {
         // === 500ml jars ===
         Mix {
             name: "Dried Porcini (stock)".to_owned(),
-            description: "Whole dried porcini slices from Forest Fungi, Devon".to_owned(),
+            description: "Dried premium porcini slices from Merry Hill Mushrooms".to_owned(),
             components: vec![MixComponent {
                 ingredient: "Porcini Mushrooms".to_owned(),
                 form: Form::Dried,
-                proportion: Proportion::Grams(50.0),
+                proportion: Proportion::Grams(250.0),
             }],
             container: Some("Muji Heat Proof Jar 500ml A".to_owned()),
-            yield_grams: Some(50.0),
+            yield_grams: Some(250.0),
         },
         Mix {
             name: "Dehydrated Onion (stock)".to_owned(),
