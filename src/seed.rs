@@ -217,7 +217,7 @@ pub fn skog_grautr_recipe() -> Recipe {
 
 pub fn muji_containers() -> Vec<Container> {
     vec![
-        // === Assigned ===
+        // 4x large glass jars
         Container {
             name: "Muji Heat Proof Jar 800ml A".to_owned(),
             kind: ContainerKind::MujiHeatProofJar,
@@ -229,6 +229,17 @@ pub fn muji_containers() -> Vec<Container> {
             capacity_ml: 800,
         },
         Container {
+            name: "Muji Heat Proof Jar 800ml C".to_owned(),
+            kind: ContainerKind::MujiHeatProofJar,
+            capacity_ml: 800,
+        },
+        Container {
+            name: "Muji Heat Proof Jar 800ml D".to_owned(),
+            kind: ContainerKind::MujiHeatProofJar,
+            capacity_ml: 800,
+        },
+        // 2x medium glass jars
+        Container {
             name: "Muji Heat Proof Jar 500ml A".to_owned(),
             kind: ContainerKind::MujiHeatProofJar,
             capacity_ml: 500,
@@ -238,16 +249,7 @@ pub fn muji_containers() -> Vec<Container> {
             kind: ContainerKind::MujiHeatProofJar,
             capacity_ml: 500,
         },
-        Container {
-            name: "Muji Heat Proof Jar 500ml C".to_owned(),
-            kind: ContainerKind::MujiHeatProofJar,
-            capacity_ml: 500,
-        },
-        Container {
-            name: "Muji Storage Container 710ml A".to_owned(),
-            kind: ContainerKind::MujiStorageContainer,
-            capacity_ml: 710,
-        },
+        // 4x medium tubs
         Container {
             name: "Muji Storage Container 1.5L A".to_owned(),
             kind: ContainerKind::MujiStorageContainer,
@@ -258,33 +260,77 @@ pub fn muji_containers() -> Vec<Container> {
             kind: ContainerKind::MujiStorageContainer,
             capacity_ml: 1500,
         },
-        // === Unassigned ===
         Container {
-            name: "Muji Heat Proof Jar 800ml C".to_owned(),
-            kind: ContainerKind::MujiHeatProofJar,
-            capacity_ml: 800,
+            name: "Muji Storage Container 1.5L C".to_owned(),
+            kind: ContainerKind::MujiStorageContainer,
+            capacity_ml: 1500,
         },
         Container {
-            name: "Muji Heat Proof Jar 800ml D".to_owned(),
-            kind: ContainerKind::MujiHeatProofJar,
-            capacity_ml: 800,
+            name: "Muji Storage Container 1.5L D".to_owned(),
+            kind: ContainerKind::MujiStorageContainer,
+            capacity_ml: 1500,
         },
+        // 1x short tub
         Container {
-            name: "Muji Heat Proof Jar 500ml D".to_owned(),
-            kind: ContainerKind::MujiHeatProofJar,
-            capacity_ml: 500,
-        },
-        Container {
-            name: "Muji Storage Container 710ml B".to_owned(),
+            name: "Muji Storage Container 710ml A".to_owned(),
             kind: ContainerKind::MujiStorageContainer,
             capacity_ml: 710,
         },
     ]
 }
 
-/// Raw grain storage — what goes where before processing
+/// Raw ingredient storage — what goes where before processing
 pub fn raw_storage_mixes() -> Vec<Mix> {
     vec![
+        // === 800ml jars ===
+        // A = Skog Grautr mix (assigned on the mix itself)
+        Mix {
+            name: "Dried Fava Beans (stock)".to_owned(),
+            description: "Whole dried field beans — soak overnight before cooking".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Fava Beans".to_owned(),
+                form: Form::Dried,
+                proportion: Proportion::Grams(500.0),
+            }],
+            container: Some("Muji Heat Proof Jar 800ml B".to_owned()),
+            yield_grams: Some(500.0),
+        },
+        Mix {
+            name: "Dried Parsley (stock)".to_owned(),
+            description: "Dried parsley flakes".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Parsley".to_owned(),
+                form: Form::Dried,
+                proportion: Proportion::ToTaste,
+            }],
+            container: Some("Muji Heat Proof Jar 800ml C".to_owned()),
+            yield_grams: None,
+        },
+        // D = free
+        // === 500ml jars ===
+        Mix {
+            name: "Dried Porcini (stock)".to_owned(),
+            description: "Whole dried porcini slices from Forest Fungi, Devon".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Porcini Mushrooms".to_owned(),
+                form: Form::Dried,
+                proportion: Proportion::Grams(50.0),
+            }],
+            container: Some("Muji Heat Proof Jar 500ml A".to_owned()),
+            yield_grams: Some(50.0),
+        },
+        Mix {
+            name: "Dehydrated Onion (stock)".to_owned(),
+            description: "Home-dehydrated in Ninja Foodi, crumbled".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Onion".to_owned(),
+                form: Form::Dehydrated,
+                proportion: Proportion::ToTaste,
+            }],
+            container: Some("Muji Heat Proof Jar 500ml B".to_owned()),
+            yield_grams: None,
+        },
+        // === 1.5L tubs ===
         Mix {
             name: "Whole Wheat (raw stock)".to_owned(),
             description: "YQ Wheat berries, whole, awaiting cracking".to_owned(),
@@ -315,9 +361,21 @@ pub fn raw_storage_mixes() -> Vec<Mix> {
                 form: Form::Whole,
                 proportion: Proportion::Grams(1000.0),
             }],
-            container: Some("Muji Heat Proof Jar 800ml B".to_owned()),
+            container: Some("Muji Storage Container 1.5L C".to_owned()),
             yield_grams: Some(1000.0),
         },
+        Mix {
+            name: "Whole Emmer (raw stock)".to_owned(),
+            description: "British emmer berries, whole, awaiting cracking in Zassenhaus".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Emmer".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::Grams(500.0),
+            }],
+            container: Some("Muji Storage Container 1.5L D".to_owned()),
+            yield_grams: Some(500.0),
+        },
+        // === 710ml tub ===
         Mix {
             name: "Kibbled Naked Barley (ready)".to_owned(),
             description: "Pre-kibbled by Hodmedod's — ready to use directly in mix".to_owned(),
@@ -328,39 +386,6 @@ pub fn raw_storage_mixes() -> Vec<Mix> {
             }],
             container: Some("Muji Storage Container 710ml A".to_owned()),
             yield_grams: Some(500.0),
-        },
-        Mix {
-            name: "Dried Porcini (stock)".to_owned(),
-            description: "Whole dried porcini slices from Forest Fungi, Devon".to_owned(),
-            components: vec![MixComponent {
-                ingredient: "Porcini Mushrooms".to_owned(),
-                form: Form::Dried,
-                proportion: Proportion::Grams(50.0),
-            }],
-            container: Some("Muji Heat Proof Jar 500ml A".to_owned()),
-            yield_grams: Some(50.0),
-        },
-        Mix {
-            name: "Dehydrated Onion (stock)".to_owned(),
-            description: "Home-dehydrated in Ninja Foodi, crumbled".to_owned(),
-            components: vec![MixComponent {
-                ingredient: "Onion".to_owned(),
-                form: Form::Dehydrated,
-                proportion: Proportion::ToTaste,
-            }],
-            container: Some("Muji Heat Proof Jar 500ml B".to_owned()),
-            yield_grams: None,
-        },
-        Mix {
-            name: "Dried Parsley (stock)".to_owned(),
-            description: "Dried parsley flakes".to_owned(),
-            components: vec![MixComponent {
-                ingredient: "Parsley".to_owned(),
-                form: Form::Dried,
-                proportion: Proportion::ToTaste,
-            }],
-            container: Some("Muji Heat Proof Jar 500ml C".to_owned()),
-            yield_grams: None,
         },
     ]
 }

@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 
 // === Physical form of any dry ingredient ===
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub enum Form {
     Whole,
     Cracked,

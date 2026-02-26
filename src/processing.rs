@@ -5,12 +5,14 @@ pub fn processing_steps_for_mix<'a>(larder: &'a Larder, mix_name: &str) -> Vec<&
         return Vec::new();
     };
 
-    let ingredient_names: Vec<&str> = mix.components.iter().map(|c| c.ingredient.as_str()).collect();
-
     larder
         .processes
         .iter()
-        .filter(|p| ingredient_names.contains(&p.input.as_str()))
+        .filter(|p| {
+            mix.components
+                .iter()
+                .any(|c| c.ingredient == p.input && c.form == p.output_form)
+        })
         .collect()
 }
 

@@ -24,11 +24,9 @@ fn main() {
         display::print_recipe(recipe);
     }
 
-    // Shopping list for everything
-    for recipe in &larder.recipes {
-        let shopping = sourcing::shopping_list_for_mix(&larder, &recipe.mix);
-        sourcing::print_shopping_list(&shopping);
-    }
+    // Combined order across all recipes
+    let order = sourcing::combined_order(&larder);
+    sourcing::print_combined_order(&order);
 
     // Larder status
     larder::print_larder_status(&larder);
