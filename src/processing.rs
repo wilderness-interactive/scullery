@@ -1,0 +1,40 @@
+use crate::data::*;
+
+pub fn processing_steps_for_mix<'a>(larder: &'a Larder, mix_name: &str) -> Vec<&'a Process> {
+    let Some(mix) = larder.mixes.iter().find(|m| m.name == mix_name) else {
+        return Vec::new();
+    };
+
+    let ingredient_names: Vec<&str> = mix.components.iter().map(|c| c.ingredient.as_str()).collect();
+
+    larder
+        .processes
+        .iter()
+        .filter(|p| ingredient_names.contains(&p.input.as_str()))
+        .collect()
+}
+
+pub fn print_processing_steps(steps: &[&Process]) {
+    println!("=== Processing Steps ===\n");
+    for (i, step) in steps.iter().enumerate() {
+        let method_desc = match &step.method {
+            ProcessMethod::MortarAndPestle => "Mortar and pestle".to_owned(),
+            ProcessMethod::Dehydrate { temp_c, hours } => {
+                format!("Dehydrate at {}C for {} hours", temp_c, hours)
+            }
+            ProcessMethod::Crumble => "Crumble by hand".to_owned(),
+            ProcessMethod::SliceAndDry => "Slice and dry".to_owned(),
+        };
+        println!(
+            "  {}. {} -> {:?}: {}",
+            i + 1,
+            step.input,
+            step.output_form,
+            method_desc
+        );
+        if let Some(notes) = &step.notes {
+            println!("     {}", notes);
+        }
+    }
+    println!();
+}
