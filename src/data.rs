@@ -20,9 +20,12 @@ pub enum Form {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum IngredientKind {
     Grain,
+    Legume,
     Mushroom,
     Herb,
     Allium,
+    Fat,
+    Seasoning,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

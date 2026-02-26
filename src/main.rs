@@ -7,34 +7,29 @@ mod seed;
 mod sourcing;
 
 fn main() {
-    let larder = seed::skog_grautr_larder();
+    let larder = seed::full_larder();
 
-    // Display the Skog Grautr mix
-    let mix = larder
-        .mixes
-        .iter()
-        .find(|m| m.name == "Skog Grautr")
-        .expect("Skog Grautr mix not found");
-    display::print_mix_summary(mix);
+    // Display each recipe mix and its cooking steps
+    for recipe in &larder.recipes {
+        let mix = larder.mixes.iter().find(|m| m.name == recipe.mix);
+        if let Some(mix) = mix {
+            display::print_mix_summary(mix);
+        }
 
-    // Processing steps
-    let steps = processing::processing_steps_for_mix(&larder, "Skog Grautr");
-    processing::print_processing_steps(&steps);
+        let steps = processing::processing_steps_for_mix(&larder, &recipe.mix);
+        if !steps.is_empty() {
+            processing::print_processing_steps(&steps);
+        }
 
-    // Shopping list
-    let shopping = sourcing::shopping_list_for_mix(&larder, "Skog Grautr");
-    sourcing::print_shopping_list(&shopping);
-
-    // Larder status
-    larder::print_larder_status(&larder);
-
-    // Recipe
-    if let Some(recipe) = cooking::find_recipe_for_mix(&larder, "Skog Grautr") {
         display::print_recipe(recipe);
     }
 
-    // TOML round-trip
-    let toml_output = toml::to_string_pretty(&larder).expect("Failed to serialize larder to TOML");
-    println!("=== TOML Output ===\n");
-    println!("{}", toml_output);
+    // Shopping list for everything
+    for recipe in &larder.recipes {
+        let shopping = sourcing::shopping_list_for_mix(&larder, &recipe.mix);
+        sourcing::print_shopping_list(&shopping);
+    }
+
+    // Larder status
+    larder::print_larder_status(&larder);
 }

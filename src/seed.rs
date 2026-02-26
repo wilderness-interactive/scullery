@@ -365,16 +365,236 @@ pub fn raw_storage_mixes() -> Vec<Mix> {
     ]
 }
 
-pub fn skog_grautr_larder() -> Larder {
-    let mut mixes = vec![skog_grautr_mix()];
+// ============================================================
+// PULS FABATA — Republic-era bean and grain porridge
+// ============================================================
+
+pub fn puls_fabata_ingredients() -> Vec<Ingredient> {
+    vec![
+        Ingredient {
+            name: "Emmer".to_owned(),
+            kind: IngredientKind::Grain,
+            form: Form::Whole,
+            notes: Some(
+                "Far/farro — the grain that built Rome. British-grown by Jeremy Dickin, Lincolnshire."
+                    .to_owned(),
+            ),
+        },
+        Ingredient {
+            name: "Fava Beans".to_owned(),
+            kind: IngredientKind::Legume,
+            form: Form::Dried,
+            notes: Some(
+                "Whole dried field beans (Vicia faba minor) — small, dense, brown. \
+                Not broad beans. Grown on the Moray Firth, Scotland."
+                    .to_owned(),
+            ),
+        },
+        Ingredient {
+            name: "Pork Fat".to_owned(),
+            kind: IngredientKind::Fat,
+            form: Form::Whole,
+            notes: Some(
+                "Guanciale, pancetta, or salt pork. Lardum — the fat of the common Roman. \
+                From the butcher."
+                    .to_owned(),
+            ),
+        },
+        Ingredient {
+            name: "Olive Oil".to_owned(),
+            kind: IngredientKind::Fat,
+            form: Form::Whole,
+            notes: Some("For finishing. The Romans drizzled it on top.".to_owned()),
+        },
+        Ingredient {
+            name: "Salt".to_owned(),
+            kind: IngredientKind::Seasoning,
+            form: Form::Whole,
+            notes: Some("The one non-negotiable seasoning.".to_owned()),
+        },
+    ]
+}
+
+pub fn puls_fabata_sources() -> Vec<Source> {
+    vec![
+        Source {
+            supplier: "Hodmedod's".to_owned(),
+            url: Some("https://hodmedods.co.uk/products/emmer-grain".to_owned()),
+            ingredient: "Emmer".to_owned(),
+            pack_grams: Some(500.0),
+            price_pence: Some(299),
+            notes: Some("Emmer (Farro), Wholegrain — British-grown in Lincolnshire".to_owned()),
+        },
+        Source {
+            supplier: "Hodmedod's".to_owned(),
+            url: Some("https://hodmedods.co.uk/products/whole-fava-beans".to_owned()),
+            ingredient: "Fava Beans".to_owned(),
+            pack_grams: Some(500.0),
+            price_pence: Some(229),
+            notes: Some("Whole Fava Beans, Organic — field beans, brown and round".to_owned()),
+        },
+        Source {
+            supplier: "Local butcher".to_owned(),
+            url: None,
+            ingredient: "Pork Fat".to_owned(),
+            pack_grams: None,
+            price_pence: None,
+            notes: Some("Guanciale, pancetta, or salt pork. Ask for pork jowl or belly offcuts.".to_owned()),
+        },
+    ]
+}
+
+pub fn puls_fabata_processes() -> Vec<Process> {
+    vec![Process {
+        input: "Emmer".to_owned(),
+        output_form: Form::Cracked,
+        method: ProcessMethod::HandMill,
+        notes: Some(
+            "Coarse crack in Zassenhaus. The Romans called this alica — \
+            pounded emmer. Not flour, just broken kernels."
+                .to_owned(),
+        ),
+    }]
+}
+
+pub fn puls_fabata_mix() -> Mix {
+    Mix {
+        name: "Puls Fabata".to_owned(),
+        description: "Republic-era bean and grain porridge. Pallens faba cum rubente lardo — \
+            pale beans with red bacon. The food that built Rome."
+            .to_owned(),
+        components: vec![
+            MixComponent {
+                ingredient: "Emmer".to_owned(),
+                form: Form::Cracked,
+                proportion: Proportion::Grams(250.0),
+            },
+            MixComponent {
+                ingredient: "Fava Beans".to_owned(),
+                form: Form::Dried,
+                proportion: Proportion::Grams(150.0),
+            },
+            MixComponent {
+                ingredient: "Pork Fat".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::Grams(100.0),
+            },
+            MixComponent {
+                ingredient: "Onion".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::Grams(100.0),
+            },
+            MixComponent {
+                ingredient: "Olive Oil".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::ToTaste,
+            },
+            MixComponent {
+                ingredient: "Salt".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::ToTaste,
+            },
+        ],
+        container: None,
+        yield_grams: None,
+    }
+}
+
+pub fn puls_fabata_recipe() -> Recipe {
+    Recipe {
+        name: "Puls Fabata".to_owned(),
+        mix: "Puls Fabata".to_owned(),
+        servings: 2,
+        steps: vec![
+            CookingStep {
+                instruction: "Night before: soak fava beans in cold water overnight".to_owned(),
+                duration_minutes: Some(480.0),
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Night before: soak cracked emmer in water separately".to_owned(),
+                duration_minutes: Some(480.0),
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Drain and rinse both beans and grain".to_owned(),
+                duration_minutes: None,
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Cut pork fat into small pieces. Render slowly in a heavy pot \
+                    until fat runs freely and meat begins to crisp"
+                    .to_owned(),
+                duration_minutes: Some(10.0),
+                water_ml: None,
+                heat: Some(HeatLevel::Low),
+            },
+            CookingStep {
+                instruction: "Add chopped onion to the rendered fat, cook until softened".to_owned(),
+                duration_minutes: Some(5.0),
+                water_ml: None,
+                heat: Some(HeatLevel::Low),
+            },
+            CookingStep {
+                instruction: "Add drained emmer, stir through the fat. Add water to cover well"
+                    .to_owned(),
+                duration_minutes: None,
+                water_ml: Some(1000),
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Bring to a gentle simmer — not a hard boil. \
+                    The more you cook it, the better will be the puls"
+                    .to_owned(),
+                duration_minutes: Some(20.0),
+                water_ml: None,
+                heat: Some(HeatLevel::Low),
+            },
+            CookingStep {
+                instruction: "Add drained fava beans. Continue simmering, stirring regularly. \
+                    Add water as needed to maintain thick porridge"
+                    .to_owned(),
+                duration_minutes: Some(35.0),
+                water_ml: None,
+                heat: Some(HeatLevel::Low),
+            },
+            CookingStep {
+                instruction: "Season with salt. Drizzle generously with olive oil. Serve."
+                    .to_owned(),
+                duration_minutes: None,
+                water_ml: None,
+                heat: None,
+            },
+        ],
+    }
+}
+
+// ============================================================
+// THE LARDER — everything together
+// ============================================================
+
+pub fn full_larder() -> Larder {
+    let mut ingredients = skog_grautr_ingredients();
+    ingredients.extend(puls_fabata_ingredients());
+
+    let mut sources = skog_grautr_sources();
+    sources.extend(puls_fabata_sources());
+
+    let mut processes = skog_grautr_processes();
+    processes.extend(puls_fabata_processes());
+
+    let mut mixes = vec![skog_grautr_mix(), puls_fabata_mix()];
     mixes.extend(raw_storage_mixes());
 
     Larder {
-        ingredients: skog_grautr_ingredients(),
-        sources: skog_grautr_sources(),
-        processes: skog_grautr_processes(),
+        ingredients,
+        sources,
+        processes,
         containers: muji_containers(),
         mixes,
-        recipes: vec![skog_grautr_recipe()],
+        recipes: vec![skog_grautr_recipe(), puls_fabata_recipe()],
     }
 }
