@@ -55,7 +55,7 @@ pub fn skog_grautr_sources() -> Vec<Source> {
             ingredient: "Wheat".to_owned(),
             pack_grams: Some(500.0),
             price_pence: Some(189),
-            notes: Some("YQ Wheat, Organic Wholegrain".to_owned()),
+            notes: Some("YQ Wheat, Organic Wholegrain — more diverse kernels visible".to_owned()),
         },
         Source {
             supplier: "Hodmedod's".to_owned(),
@@ -129,9 +129,9 @@ pub fn skog_grautr_processes() -> Vec<Process> {
 
 pub fn skog_grautr_mix() -> Mix {
     Mix {
-        name: "Skog Grautr".to_owned(),
+        name: "Skógargrautr".to_owned(),
         description: "Forest porridge — cracked Nordic grains with wild porcini, \
-            parsley and dried onion. Old Norse skog (forest) + grautr (porridge)."
+            parsley and dried onion. Old Norse skógar (of the forest) + grautr (porridge)."
             .to_owned(),
         components: vec![
             MixComponent {
@@ -177,8 +177,8 @@ pub fn skog_grautr_mix() -> Mix {
 
 pub fn skog_grautr_recipe() -> Recipe {
     Recipe {
-        name: "Skog Grautr".to_owned(),
-        mix: "Skog Grautr".to_owned(),
+        name: "Skógargrautr".to_owned(),
+        mix: "Skógargrautr".to_owned(),
         servings: 1,
         steps: vec![
             CookingStep {
@@ -188,7 +188,7 @@ pub fn skog_grautr_recipe() -> Recipe {
                 heat: None,
             },
             CookingStep {
-                instruction: "Add one serving of Skog Grautr mix".to_owned(),
+                instruction: "Add one serving of Skógargrautr mix".to_owned(),
                 duration_minutes: None,
                 water_ml: None,
                 heat: None,
@@ -283,7 +283,7 @@ pub fn muji_containers() -> Vec<Container> {
 pub fn raw_storage_mixes() -> Vec<Mix> {
     vec![
         // === 800ml jars ===
-        // A = Skog Grautr mix (assigned on the mix itself)
+        // A = Skógargrautr mix (assigned on the mix itself)
         Mix {
             name: "Dried Fava Beans (stock)".to_owned(),
             description: "Whole dried field beans — soak overnight before cooking".to_owned(),
