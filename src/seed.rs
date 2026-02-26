@@ -24,7 +24,7 @@ pub fn skog_grautr_ingredients() -> Vec<Ingredient> {
             name: "Naked Oats".to_owned(),
             kind: IngredientKind::Grain,
             form: Form::Whole,
-            notes: Some("Hulless oats, grown in Scotland. Store cold — beneficial oils.".to_owned()),
+            notes: Some("Hulless oats, grown in Scotland. Non-GF (farm also grows cereals). Store cold.".to_owned()),
         },
         Ingredient {
             name: "Porcini Mushrooms".to_owned(),
@@ -75,11 +75,11 @@ pub fn skog_grautr_sources() -> Vec<Source> {
         },
         Source {
             supplier: "Hodmedod's".to_owned(),
-            url: Some("https://hodmedods.co.uk/products/naked-oat-groats-gluten-free-organic".to_owned()),
+            url: Some("https://hodmedods.co.uk/products/naked-oats-organic-wholegrain".to_owned()),
             ingredient: "Naked Oats".to_owned(),
-            pack_grams: Some(1000.0),
-            price_pence: Some(466),
-            notes: Some("Naked Oat Groats, GF, Organic — 500g sold out, order 1kg".to_owned()),
+            pack_grams: Some(500.0),
+            price_pence: Some(199),
+            notes: Some("Naked Oats, Organic Wholegrain — non-GF (mixing with wheat anyway)".to_owned()),
         },
         Source {
             supplier: "Forest Fungi".to_owned(),
@@ -359,10 +359,10 @@ pub fn raw_storage_mixes() -> Vec<Mix> {
             components: vec![MixComponent {
                 ingredient: "Naked Oats".to_owned(),
                 form: Form::Whole,
-                proportion: Proportion::Grams(1000.0),
+                proportion: Proportion::Grams(500.0),
             }],
             container: Some("Muji Storage Container 1.5L C".to_owned()),
-            yield_grams: Some(1000.0),
+            yield_grams: Some(500.0),
         },
         Mix {
             name: "Whole Emmer (raw stock)".to_owned(),
