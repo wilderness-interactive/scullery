@@ -6,31 +6,31 @@ pub fn skog_grautr_ingredients() -> Vec<Ingredient> {
             name: "Wheat".to_owned(),
             kind: IngredientKind::Grain,
             form: Form::Whole,
-            notes: Some("British-grown whole wheat berries from Hodmedod's".to_owned()),
+            notes: Some("YQ Wheat — genetically diverse population wheat, grown in Suffolk".to_owned()),
         },
         Ingredient {
             name: "Naked Barley".to_owned(),
             kind: IngredientKind::Grain,
-            form: Form::Whole,
-            notes: Some("Hulless barley — the ancient form, no pearling needed".to_owned()),
+            form: Form::Kibbled,
+            notes: Some("Oak Ruby variety, pre-kibbled by Hodmedod's. No processing needed.".to_owned()),
         },
         Ingredient {
             name: "Rye".to_owned(),
             kind: IngredientKind::Grain,
             form: Form::Whole,
-            notes: Some("British-grown whole rye from Hodmedod's".to_owned()),
+            notes: Some("Organic wholegrain rye, grown at Wimpole Hall, Cambridgeshire".to_owned()),
         },
         Ingredient {
             name: "Naked Oats".to_owned(),
             kind: IngredientKind::Grain,
             form: Form::Whole,
-            notes: Some("Hulless oats — hull falls away naturally, whole unrefined".to_owned()),
+            notes: Some("Hulless oats, grown in Scotland. Store cold — beneficial oils.".to_owned()),
         },
         Ingredient {
             name: "Porcini Mushrooms".to_owned(),
             kind: IngredientKind::Mushroom,
             form: Form::Dried,
-            notes: Some("Dried porcini, the deep umami earthiness of the mix".to_owned()),
+            notes: Some("Whole dried slices — the deep umami earthiness of the forest".to_owned()),
         },
         Ingredient {
             name: "Parsley".to_owned(),
@@ -42,7 +42,7 @@ pub fn skog_grautr_ingredients() -> Vec<Ingredient> {
             name: "Onion".to_owned(),
             kind: IngredientKind::Allium,
             form: Form::Whole,
-            notes: Some("Home-dehydrated — shop-bought onion powder is bitter and acrid".to_owned()),
+            notes: Some("Home-dehydrated in Ninja Foodi. Shop-bought powder is bitter.".to_owned()),
         },
     ]
 }
@@ -51,35 +51,43 @@ pub fn skog_grautr_sources() -> Vec<Source> {
     vec![
         Source {
             supplier: "Hodmedod's".to_owned(),
-            url: Some("https://hodmedods.co.uk/collections/grains".to_owned()),
+            url: Some("https://hodmedods.co.uk/products/yq-wheat-organic-wholegrain".to_owned()),
             ingredient: "Wheat".to_owned(),
             pack_grams: Some(500.0),
-            price_pence: None,
-            notes: Some("YQ Wheat or Flanders Wheat, wholegrain".to_owned()),
+            price_pence: Some(189),
+            notes: Some("YQ Wheat, Organic Wholegrain".to_owned()),
         },
         Source {
             supplier: "Hodmedod's".to_owned(),
-            url: Some("https://hodmedods.co.uk/collections/grains".to_owned()),
+            url: Some("https://hodmedods.co.uk/products/kibbled-naked-barley".to_owned()),
             ingredient: "Naked Barley".to_owned(),
             pack_grams: Some(500.0),
-            price_pence: None,
-            notes: Some("Naked barley, wholegrain".to_owned()),
+            price_pence: Some(199),
+            notes: Some("Kibbled Naked Barley — already cracked, ready to use".to_owned()),
         },
         Source {
             supplier: "Hodmedod's".to_owned(),
-            url: Some("https://hodmedods.co.uk/collections/grains".to_owned()),
+            url: Some("https://hodmedods.co.uk/products/rye-grain-organic-wholegrain".to_owned()),
             ingredient: "Rye".to_owned(),
             pack_grams: Some(500.0),
-            price_pence: None,
-            notes: Some("Organic wholegrain rye — check availability, sometimes out of stock".to_owned()),
+            price_pence: Some(269),
+            notes: Some("Rye, Organic Wholegrain — back in stock".to_owned()),
         },
         Source {
             supplier: "Hodmedod's".to_owned(),
-            url: Some("https://hodmedods.co.uk/collections/grains".to_owned()),
+            url: Some("https://hodmedods.co.uk/products/naked-oat-groats-gluten-free-organic".to_owned()),
             ingredient: "Naked Oats".to_owned(),
-            pack_grams: Some(500.0),
-            price_pence: None,
-            notes: Some("Naked oat groats, gluten-free, organic".to_owned()),
+            pack_grams: Some(1000.0),
+            price_pence: Some(466),
+            notes: Some("Naked Oat Groats, GF, Organic — 500g sold out, order 1kg".to_owned()),
+        },
+        Source {
+            supplier: "Forest Fungi".to_owned(),
+            url: Some("https://forestfungi.co.uk/product/dried-porcini-mushrooms/".to_owned()),
+            ingredient: "Porcini Mushrooms".to_owned(),
+            pack_grams: Some(50.0),
+            price_pence: Some(895),
+            notes: Some("British-grown in Devon — closest supplier to Cornwall".to_owned()),
         },
     ]
 }
@@ -89,32 +97,26 @@ pub fn skog_grautr_processes() -> Vec<Process> {
         Process {
             input: "Wheat".to_owned(),
             output_form: Form::Cracked,
-            method: ProcessMethod::MortarAndPestle,
-            notes: Some("Coarse crack — not flour, not flakes. Two or three pieces per kernel.".to_owned()),
-        },
-        Process {
-            input: "Naked Barley".to_owned(),
-            output_form: Form::Kibbled,
-            method: ProcessMethod::MortarAndPestle,
-            notes: Some("Kibble to rough irregular pieces".to_owned()),
+            method: ProcessMethod::HandMill,
+            notes: Some("Zassenhaus on coarse setting — 2-3 pieces per kernel".to_owned()),
         },
         Process {
             input: "Rye".to_owned(),
             output_form: Form::Cracked,
-            method: ProcessMethod::MortarAndPestle,
-            notes: Some("Coarse crack — rye is dense, takes more work than oats".to_owned()),
+            method: ProcessMethod::HandMill,
+            notes: Some("Zassenhaus on coarse setting — rye is dense, takes more turns".to_owned()),
         },
         Process {
             input: "Naked Oats".to_owned(),
             output_form: Form::Cracked,
-            method: ProcessMethod::MortarAndPestle,
-            notes: Some("Soft grain, cracks easily. A few firm strikes per handful.".to_owned()),
+            method: ProcessMethod::HandMill,
+            notes: Some("Zassenhaus on coarse setting — soft grain, easiest to crack".to_owned()),
         },
         Process {
             input: "Onion".to_owned(),
             output_form: Form::Dehydrated,
             method: ProcessMethod::Dehydrate { temp_c: 57, hours: 8.0 },
-            notes: Some("Slice thin, dehydrate until crisp, then crumble into mix".to_owned()),
+            notes: Some("Ninja Foodi dehydrate function. Slice thin, until crisp, then crumble.".to_owned()),
         },
         Process {
             input: "Porcini Mushrooms".to_owned(),
@@ -215,6 +217,7 @@ pub fn skog_grautr_recipe() -> Recipe {
 
 pub fn muji_containers() -> Vec<Container> {
     vec![
+        // === Assigned ===
         Container {
             name: "Muji Heat Proof Jar 800ml A".to_owned(),
             kind: ContainerKind::MujiHeatProofJar,
@@ -222,16 +225,6 @@ pub fn muji_containers() -> Vec<Container> {
         },
         Container {
             name: "Muji Heat Proof Jar 800ml B".to_owned(),
-            kind: ContainerKind::MujiHeatProofJar,
-            capacity_ml: 800,
-        },
-        Container {
-            name: "Muji Heat Proof Jar 800ml C".to_owned(),
-            kind: ContainerKind::MujiHeatProofJar,
-            capacity_ml: 800,
-        },
-        Container {
-            name: "Muji Heat Proof Jar 800ml D".to_owned(),
             kind: ContainerKind::MujiHeatProofJar,
             capacity_ml: 800,
         },
@@ -251,17 +244,7 @@ pub fn muji_containers() -> Vec<Container> {
             capacity_ml: 500,
         },
         Container {
-            name: "Muji Heat Proof Jar 500ml D".to_owned(),
-            kind: ContainerKind::MujiHeatProofJar,
-            capacity_ml: 500,
-        },
-        Container {
             name: "Muji Storage Container 710ml A".to_owned(),
-            kind: ContainerKind::MujiStorageContainer,
-            capacity_ml: 710,
-        },
-        Container {
-            name: "Muji Storage Container 710ml B".to_owned(),
             kind: ContainerKind::MujiStorageContainer,
             capacity_ml: 710,
         },
@@ -275,16 +258,123 @@ pub fn muji_containers() -> Vec<Container> {
             kind: ContainerKind::MujiStorageContainer,
             capacity_ml: 1500,
         },
+        // === Unassigned ===
+        Container {
+            name: "Muji Heat Proof Jar 800ml C".to_owned(),
+            kind: ContainerKind::MujiHeatProofJar,
+            capacity_ml: 800,
+        },
+        Container {
+            name: "Muji Heat Proof Jar 800ml D".to_owned(),
+            kind: ContainerKind::MujiHeatProofJar,
+            capacity_ml: 800,
+        },
+        Container {
+            name: "Muji Heat Proof Jar 500ml D".to_owned(),
+            kind: ContainerKind::MujiHeatProofJar,
+            capacity_ml: 500,
+        },
+        Container {
+            name: "Muji Storage Container 710ml B".to_owned(),
+            kind: ContainerKind::MujiStorageContainer,
+            capacity_ml: 710,
+        },
+    ]
+}
+
+/// Raw grain storage — what goes where before processing
+pub fn raw_storage_mixes() -> Vec<Mix> {
+    vec![
+        Mix {
+            name: "Whole Wheat (raw stock)".to_owned(),
+            description: "YQ Wheat berries, whole, awaiting cracking".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Wheat".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::Grams(500.0),
+            }],
+            container: Some("Muji Storage Container 1.5L A".to_owned()),
+            yield_grams: Some(500.0),
+        },
+        Mix {
+            name: "Whole Rye (raw stock)".to_owned(),
+            description: "Organic rye grain, whole, awaiting cracking".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Rye".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::Grams(500.0),
+            }],
+            container: Some("Muji Storage Container 1.5L B".to_owned()),
+            yield_grams: Some(500.0),
+        },
+        Mix {
+            name: "Naked Oat Groats (raw stock)".to_owned(),
+            description: "Whole naked oats, awaiting cracking. Store cool.".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Naked Oats".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::Grams(1000.0),
+            }],
+            container: Some("Muji Heat Proof Jar 800ml B".to_owned()),
+            yield_grams: Some(1000.0),
+        },
+        Mix {
+            name: "Kibbled Naked Barley (ready)".to_owned(),
+            description: "Pre-kibbled by Hodmedod's — ready to use directly in mix".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Naked Barley".to_owned(),
+                form: Form::Kibbled,
+                proportion: Proportion::Grams(500.0),
+            }],
+            container: Some("Muji Storage Container 710ml A".to_owned()),
+            yield_grams: Some(500.0),
+        },
+        Mix {
+            name: "Dried Porcini (stock)".to_owned(),
+            description: "Whole dried porcini slices from Forest Fungi, Devon".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Porcini Mushrooms".to_owned(),
+                form: Form::Dried,
+                proportion: Proportion::Grams(50.0),
+            }],
+            container: Some("Muji Heat Proof Jar 500ml A".to_owned()),
+            yield_grams: Some(50.0),
+        },
+        Mix {
+            name: "Dehydrated Onion (stock)".to_owned(),
+            description: "Home-dehydrated in Ninja Foodi, crumbled".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Onion".to_owned(),
+                form: Form::Dehydrated,
+                proportion: Proportion::ToTaste,
+            }],
+            container: Some("Muji Heat Proof Jar 500ml B".to_owned()),
+            yield_grams: None,
+        },
+        Mix {
+            name: "Dried Parsley (stock)".to_owned(),
+            description: "Dried parsley flakes".to_owned(),
+            components: vec![MixComponent {
+                ingredient: "Parsley".to_owned(),
+                form: Form::Dried,
+                proportion: Proportion::ToTaste,
+            }],
+            container: Some("Muji Heat Proof Jar 500ml C".to_owned()),
+            yield_grams: None,
+        },
     ]
 }
 
 pub fn skog_grautr_larder() -> Larder {
+    let mut mixes = vec![skog_grautr_mix()];
+    mixes.extend(raw_storage_mixes());
+
     Larder {
         ingredients: skog_grautr_ingredients(),
         sources: skog_grautr_sources(),
         processes: skog_grautr_processes(),
         containers: muji_containers(),
-        mixes: vec![skog_grautr_mix()],
+        mixes,
         recipes: vec![skog_grautr_recipe()],
     }
 }

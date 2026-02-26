@@ -50,6 +50,7 @@ pub struct Source {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub enum ProcessMethod {
     MortarAndPestle,
+    HandMill,
     Dehydrate { temp_c: u32, hours: f64 },
     Crumble,
     SliceAndDry,

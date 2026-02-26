@@ -19,6 +19,7 @@ pub fn print_processing_steps(steps: &[&Process]) {
     for (i, step) in steps.iter().enumerate() {
         let method_desc = match &step.method {
             ProcessMethod::MortarAndPestle => "Mortar and pestle".to_owned(),
+            ProcessMethod::HandMill => "Hand mill (Zassenhaus)".to_owned(),
             ProcessMethod::Dehydrate { temp_c, hours } => {
                 format!("Dehydrate at {}C for {} hours", temp_c, hours)
             }
