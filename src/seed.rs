@@ -474,16 +474,28 @@ pub fn puls_fabata_sources() -> Vec<Source> {
 }
 
 pub fn puls_fabata_processes() -> Vec<Process> {
-    vec![Process {
-        input: "Emmer".to_owned(),
-        output_form: Form::Cracked,
-        method: ProcessMethod::HandMill,
-        notes: Some(
-            "Coarse crack in Zassenhaus. The Romans called this alica — \
-            pounded emmer. Not flour, just broken kernels."
-                .to_owned(),
-        ),
-    }]
+    vec![
+        Process {
+            input: "Emmer".to_owned(),
+            output_form: Form::Cracked,
+            method: ProcessMethod::HandMill,
+            notes: Some(
+                "Coarse crack in Zassenhaus. The Romans called this alica \u{2014} \
+                pounded emmer. Not flour, just broken kernels."
+                    .to_owned(),
+            ),
+        },
+        Process {
+            input: "Fava Beans".to_owned(),
+            output_form: Form::Cracked,
+            method: ProcessMethod::HandMill,
+            notes: Some(
+                "Coarse crack in Zassenhaus \u{2014} breaks the hulls. \
+                Field bean hulls never soften otherwise, no matter how long you cook or soak."
+                    .to_owned(),
+            ),
+        },
+    ]
 }
 
 pub fn puls_fabata_mix() -> Mix {
@@ -500,7 +512,7 @@ pub fn puls_fabata_mix() -> Mix {
             },
             MixComponent {
                 ingredient: "Fava Beans".to_owned(),
-                form: Form::Dried,
+                form: Form::Cracked,
                 proportion: Proportion::Grams(150.0),
             },
             MixComponent {
@@ -536,57 +548,42 @@ pub fn puls_fabata_recipe() -> Recipe {
         servings: 2,
         steps: vec![
             CookingStep {
-                instruction: "Night before: soak fava beans in cold water overnight".to_owned(),
-                duration_minutes: Some(480.0),
-                water_ml: None,
-                heat: None,
-            },
-            CookingStep {
-                instruction: "Night before: soak cracked emmer in water separately".to_owned(),
-                duration_minutes: Some(480.0),
-                water_ml: None,
-                heat: None,
-            },
-            CookingStep {
-                instruction: "Drain and rinse both beans and grain".to_owned(),
-                duration_minutes: None,
-                water_ml: None,
-                heat: None,
-            },
-            CookingStep {
-                instruction: "Cut pork fat into small pieces. Render slowly in a heavy pot \
-                    until fat runs freely and meat begins to crisp"
+                instruction: "Crack emmer and fava beans in Zassenhaus on coarse setting \u{2014} \
+                    break the hulls, not flour. Everything through the mill."
                     .to_owned(),
                 duration_minutes: Some(10.0),
                 water_ml: None,
-                heat: Some(HeatLevel::Low),
+                heat: None,
             },
             CookingStep {
-                instruction: "Add chopped onion to the rendered fat, cook until softened".to_owned(),
-                duration_minutes: Some(5.0),
-                water_ml: None,
-                heat: Some(HeatLevel::Low),
-            },
-            CookingStep {
-                instruction: "Add drained emmer, stir through the fat. Add water to cover well"
+                instruction: "Everything in the pot cold: cracked beans, cracked emmer, \
+                    pork fat in small pieces, chopped onion. Add water to cover well."
                     .to_owned(),
                 duration_minutes: None,
                 water_ml: Some(1000),
                 heat: None,
             },
             CookingStep {
-                instruction: "Bring to a gentle simmer — not a hard boil. \
-                    The more you cook it, the better will be the puls"
+                instruction: "Bring to a full boil \u{2014} \
+                    this destroys the lectins in the beans. Skim any foam."
                     .to_owned(),
-                duration_minutes: Some(20.0),
+                duration_minutes: Some(10.0),
+                water_ml: None,
+                heat: Some(HeatLevel::Boil),
+            },
+            CookingStep {
+                instruction: "Drop to low. Simmer gently, stirring occasionally. \
+                    Add water as needed. The fat renders into the liquid as it cooks."
+                    .to_owned(),
+                duration_minutes: Some(90.0),
                 water_ml: None,
                 heat: Some(HeatLevel::Low),
             },
             CookingStep {
-                instruction: "Add drained fava beans. Continue simmering, stirring regularly. \
-                    Add water as needed to maintain thick porridge"
+                instruction: "Mash with a ladle against the side of the pot as it thickens \u{2014} \
+                    maccare. The beans and grain break down into a thick porridge."
                     .to_owned(),
-                duration_minutes: Some(35.0),
+                duration_minutes: Some(30.0),
                 water_ml: None,
                 heat: Some(HeatLevel::Low),
             },
