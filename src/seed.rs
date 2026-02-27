@@ -602,20 +602,277 @@ pub fn puls_fabata_recipe() -> Recipe {
 }
 
 // ============================================================
+// FLATBRAUÐ — Norse unleavened flatbread
+// ============================================================
+
+// No new ingredients — uses Rye (from Skógargrautr) and Salt (from Puls Fabata)
+// No new sources — rye already sourced from Hodmedod's
+
+pub fn flatbraud_processes() -> Vec<Process> {
+    vec![Process {
+        input: "Rye".to_owned(),
+        output_form: Form::Ground,
+        method: ProcessMethod::HandMill,
+        notes: Some(
+            "Zassenhaus on fine setting \u{2014} grind to flour fresh before use, \
+            like coffee. The volatile oils matter."
+                .to_owned(),
+        ),
+    }]
+}
+
+pub fn flatbraud_mix() -> Mix {
+    Mix {
+        name: "Flatbrauð".to_owned(),
+        description: "Norse rye flatbread \u{2014} the most fundamental bread. \
+            Ground grain, water, salt, hot iron. No yeast, no soda, no waiting."
+            .to_owned(),
+        components: vec![
+            MixComponent {
+                ingredient: "Rye".to_owned(),
+                form: Form::Ground,
+                proportion: Proportion::Grams(100.0),
+            },
+            MixComponent {
+                ingredient: "Salt".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::ToTaste,
+            },
+        ],
+        container: None,
+        yield_grams: None,
+    }
+}
+
+pub fn flatbraud_recipe() -> Recipe {
+    Recipe {
+        name: "Flatbrauð".to_owned(),
+        mix: "Flatbrauð".to_owned(),
+        servings: 2,
+        steps: vec![
+            CookingStep {
+                instruction: "Grind rye in Zassenhaus on fine setting \u{2014} \
+                    fresh, right before mixing"
+                    .to_owned(),
+                duration_minutes: Some(5.0),
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Mix ground rye with a pinch of salt. \
+                    Add water gradually, knead into a firm dough"
+                    .to_owned(),
+                duration_minutes: None,
+                water_ml: Some(60),
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Divide into two pieces. Roll or press each \
+                    thin on a floured surface"
+                    .to_owned(),
+                duration_minutes: None,
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Cook on a dry, hot cast iron pan \u{2014} \
+                    no oil needed. When bubbles form and underside chars slightly, flip"
+                    .to_owned(),
+                duration_minutes: Some(2.0),
+                water_ml: None,
+                heat: Some(HeatLevel::Medium),
+            },
+            CookingStep {
+                instruction: "Cook second side until done. Eat warm."
+                    .to_owned(),
+                duration_minutes: Some(2.0),
+                water_ml: None,
+                heat: Some(HeatLevel::Medium),
+            },
+        ],
+    }
+}
+
+// ============================================================
+// LIBUM — Cato's sacred cheese bread (De Agri Cultura, 75)
+// ============================================================
+
+pub fn libum_ingredients() -> Vec<Ingredient> {
+    vec![
+        Ingredient {
+            name: "Fresh Cheese".to_owned(),
+            kind: IngredientKind::Dairy,
+            form: Form::Whole,
+            notes: Some(
+                "Ricotta or similar soft fresh cheese. Cato says to pound it \
+                smooth in a mortar."
+                    .to_owned(),
+            ),
+        },
+        Ingredient {
+            name: "Egg".to_owned(),
+            kind: IngredientKind::Egg,
+            form: Form::Whole,
+            notes: None,
+        },
+        Ingredient {
+            name: "Bay Leaves".to_owned(),
+            kind: IngredientKind::Herb,
+            form: Form::Dried,
+            notes: Some("Placed underneath while baking \u{2014} aromatic bed, not eaten.".to_owned()),
+        },
+    ]
+}
+
+pub fn libum_sources() -> Vec<Source> {
+    vec![
+        Source {
+            supplier: "Any shop".to_owned(),
+            url: None,
+            ingredient: "Fresh Cheese".to_owned(),
+            pack_grams: Some(250.0),
+            price_pence: None,
+            notes: Some("Ricotta or any soft, fresh cheese".to_owned()),
+        },
+        Source {
+            supplier: "Any shop".to_owned(),
+            url: None,
+            ingredient: "Egg".to_owned(),
+            pack_grams: None,
+            price_pence: None,
+            notes: Some("Free range".to_owned()),
+        },
+        Source {
+            supplier: "Any shop".to_owned(),
+            url: None,
+            ingredient: "Bay Leaves".to_owned(),
+            pack_grams: None,
+            price_pence: None,
+            notes: Some("Dried bay leaves".to_owned()),
+        },
+    ]
+}
+
+pub fn libum_processes() -> Vec<Process> {
+    vec![Process {
+        input: "Emmer".to_owned(),
+        output_form: Form::Ground,
+        method: ProcessMethod::HandMill,
+        notes: Some(
+            "Zassenhaus on fine setting \u{2014} grind to flour. \
+            Cato calls this far or farina."
+                .to_owned(),
+        ),
+    }]
+}
+
+pub fn libum_mix() -> Mix {
+    Mix {
+        name: "Libum".to_owned(),
+        description: "Cato's cheese bread (De Agri Cultura 75). Libum hoc modo facito \u{2014} \
+            make libum thus. Offered to the gods, eaten by the living."
+            .to_owned(),
+        components: vec![
+            MixComponent {
+                ingredient: "Emmer".to_owned(),
+                form: Form::Ground,
+                proportion: Proportion::Grams(100.0),
+            },
+            MixComponent {
+                ingredient: "Fresh Cheese".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::Grams(200.0),
+            },
+            MixComponent {
+                ingredient: "Egg".to_owned(),
+                form: Form::Whole,
+                proportion: Proportion::Grams(50.0),
+            },
+            MixComponent {
+                ingredient: "Bay Leaves".to_owned(),
+                form: Form::Dried,
+                proportion: Proportion::ToTaste,
+            },
+        ],
+        container: None,
+        yield_grams: None,
+    }
+}
+
+pub fn libum_recipe() -> Recipe {
+    Recipe {
+        name: "Libum".to_owned(),
+        mix: "Libum".to_owned(),
+        servings: 1,
+        steps: vec![
+            CookingStep {
+                instruction: "Grind emmer in Zassenhaus on fine setting \u{2014} \
+                    fresh flour, right before mixing"
+                    .to_owned(),
+                duration_minutes: Some(5.0),
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Pound fresh cheese smooth in mortar \u{2014} \
+                    Cato: casei bene disterat in mortario"
+                    .to_owned(),
+                duration_minutes: Some(3.0),
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Mix ground emmer into the cheese. \
+                    Add one egg, mix well until uniform dough"
+                    .to_owned(),
+                duration_minutes: None,
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Shape into a round loaf. Place on bay leaves \
+                    on a baking surface"
+                    .to_owned(),
+                duration_minutes: None,
+                water_ml: None,
+                heat: None,
+            },
+            CookingStep {
+                instruction: "Bake gently until golden \u{2014} \
+                    Cato: in foco caldo sub testu coquito leniter"
+                    .to_owned(),
+                duration_minutes: Some(30.0),
+                water_ml: None,
+                heat: Some(HeatLevel::Medium),
+            },
+        ],
+    }
+}
+
+// ============================================================
 // THE LARDER — everything together
 // ============================================================
 
 pub fn full_larder() -> Larder {
     let mut ingredients = skog_grautr_ingredients();
     ingredients.extend(puls_fabata_ingredients());
+    ingredients.extend(libum_ingredients());
 
     let mut sources = skog_grautr_sources();
     sources.extend(puls_fabata_sources());
+    sources.extend(libum_sources());
 
     let mut processes = skog_grautr_processes();
     processes.extend(puls_fabata_processes());
+    processes.extend(flatbraud_processes());
+    processes.extend(libum_processes());
 
-    let mut mixes = vec![skog_grautr_mix(), puls_fabata_mix()];
+    let mut mixes = vec![
+        skog_grautr_mix(),
+        puls_fabata_mix(),
+        flatbraud_mix(),
+        libum_mix(),
+    ];
     mixes.extend(raw_storage_mixes());
 
     Larder {
@@ -624,6 +881,11 @@ pub fn full_larder() -> Larder {
         processes,
         containers: muji_containers(),
         mixes,
-        recipes: vec![skog_grautr_recipe(), puls_fabata_recipe()],
+        recipes: vec![
+            skog_grautr_recipe(),
+            puls_fabata_recipe(),
+            flatbraud_recipe(),
+            libum_recipe(),
+        ],
     }
 }

@@ -25,6 +25,8 @@ pub enum IngredientKind {
     Herb,
     Allium,
     Fat,
+    Dairy,
+    Egg,
     Seasoning,
 }
 
