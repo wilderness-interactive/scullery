@@ -27,6 +27,7 @@ pub fn print_processing_steps(steps: &[&Process]) {
             }
             ProcessMethod::Crumble => "Crumble by hand".to_owned(),
             ProcessMethod::SliceAndDry => "Slice and dry".to_owned(),
+            ProcessMethod::Render => "Render in heavy pot on low heat".to_owned(),
         };
         println!(
             "  {}. {} -> {:?}: {}",

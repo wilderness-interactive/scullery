@@ -13,6 +13,7 @@ pub enum Form {
     Dehydrated,
     Crumbled,
     Ground,
+    Rendered,
 }
 
 // === Ingredients ===
@@ -59,6 +60,7 @@ pub enum ProcessMethod {
     Dehydrate { temp_c: u32, hours: f64 },
     Crumble,
     SliceAndDry,
+    Render,
 }
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

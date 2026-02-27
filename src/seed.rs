@@ -850,6 +850,75 @@ pub fn libum_recipe() -> Recipe {
 }
 
 // ============================================================
+// FAT RENDERING — turning raw butcher fat into cooking fat
+// ============================================================
+
+pub fn rendering_ingredients() -> Vec<Ingredient> {
+    vec![Ingredient {
+        name: "Beef Fat".to_owned(),
+        kind: IngredientKind::Fat,
+        form: Form::Whole,
+        notes: Some(
+            "Raw beef fat trimmings from the butcher \u{2014} sliced off the cuts, \
+            given away free because nobody wants it. Renders into dripping."
+                .to_owned(),
+        ),
+    }]
+}
+
+pub fn rendering_sources() -> Vec<Source> {
+    vec![
+        Source {
+            supplier: "Local butcher".to_owned(),
+            url: None,
+            ingredient: "Pork Fat".to_owned(),
+            pack_grams: None,
+            price_pence: Some(0),
+            notes: Some(
+                "Free raw pork fat trimmings \u{2014} off the cuts, for rendering into lard"
+                    .to_owned(),
+            ),
+        },
+        Source {
+            supplier: "Local butcher".to_owned(),
+            url: None,
+            ingredient: "Beef Fat".to_owned(),
+            pack_grams: None,
+            price_pence: Some(0),
+            notes: Some(
+                "Free raw beef fat trimmings \u{2014} off the cuts, for rendering into dripping"
+                    .to_owned(),
+            ),
+        },
+    ]
+}
+
+pub fn rendering_processes() -> Vec<Process> {
+    vec![
+        Process {
+            input: "Pork Fat".to_owned(),
+            output_form: Form::Rendered,
+            method: ProcessMethod::Render,
+            notes: Some(
+                "Cut into small pieces. Low heat in a heavy pot until fat runs clear. \
+                Strain through muslin. Cool and store. This is lard."
+                    .to_owned(),
+            ),
+        },
+        Process {
+            input: "Beef Fat".to_owned(),
+            output_form: Form::Rendered,
+            method: ProcessMethod::Render,
+            notes: Some(
+                "Cut into small pieces. Low heat in a heavy pot until fat runs clear. \
+                Strain through muslin. Cool and store. This is dripping."
+                    .to_owned(),
+            ),
+        },
+    ]
+}
+
+// ============================================================
 // THE LARDER — everything together
 // ============================================================
 
@@ -857,15 +926,18 @@ pub fn full_larder() -> Larder {
     let mut ingredients = skog_grautr_ingredients();
     ingredients.extend(puls_fabata_ingredients());
     ingredients.extend(libum_ingredients());
+    ingredients.extend(rendering_ingredients());
 
     let mut sources = skog_grautr_sources();
     sources.extend(puls_fabata_sources());
     sources.extend(libum_sources());
+    sources.extend(rendering_sources());
 
     let mut processes = skog_grautr_processes();
     processes.extend(puls_fabata_processes());
     processes.extend(flatbraud_processes());
     processes.extend(libum_processes());
+    processes.extend(rendering_processes());
 
     let mut mixes = vec![
         skog_grautr_mix(),
