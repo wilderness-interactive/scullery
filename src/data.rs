@@ -148,6 +148,7 @@ pub enum MeatCategory {
     Pork,
     Lamb,
     Poultry,
+    Game,
     Sausage,
     Cured,
 }
