@@ -41,6 +41,31 @@ pub fn print_recipe(recipe: &Recipe) {
     println!();
 }
 
+pub fn print_butcher(butcher: &Butcher) {
+    println!("=== {} ===\n", butcher.name);
+    let mut current_category = None;
+    for item in &butcher.items {
+        let cat = format!("{:?}", item.category);
+        if current_category.as_ref() != Some(&cat) {
+            println!("  {}:", cat);
+            current_category = Some(cat);
+        }
+        let price = match item.price_pence_per_kg {
+            Some(0) => "FREE".to_owned(),
+            Some(p) => format!("{:.2}/kg", p as f64 / 100.0),
+            None => "price TBC".to_owned(),
+        };
+        let notes = item.notes.as_deref().unwrap_or("");
+        let notes_suffix = if notes.is_empty() {
+            String::new()
+        } else {
+            format!(" ({})", notes)
+        };
+        println!("    - {} -- {}{}", item.name, price, notes_suffix);
+    }
+    println!();
+}
+
 fn format_proportion(p: &Proportion) -> String {
     match p {
         Proportion::EqualPart => "equal part".to_owned(),

@@ -140,6 +140,32 @@ pub struct Recipe {
     pub steps: Vec<CookingStep>,
 }
 
+// === Butcher ===
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub enum MeatCategory {
+    Beef,
+    Pork,
+    Lamb,
+    Poultry,
+    Sausage,
+    Cured,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct ButcherItem {
+    pub name: String,
+    pub category: MeatCategory,
+    pub price_pence_per_kg: Option<u32>,
+    pub notes: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+pub struct Butcher {
+    pub name: String,
+    pub items: Vec<ButcherItem>,
+}
+
 // === The Larder: where all provisions live ===
 
 #[derive(Debug, Clone, Serialize, Deserialize)]

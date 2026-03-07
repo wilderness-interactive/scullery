@@ -2,6 +2,7 @@ mod cooking;
 mod data;
 mod display;
 mod larder;
+mod private;
 mod processing;
 mod seed;
 mod sourcing;
@@ -30,4 +31,8 @@ fn main() {
 
     // Larder status
     larder::print_larder_status(&larder);
+
+    // Local butcher
+    let butcher = private::butcher::local_butcher();
+    display::print_butcher(&butcher);
 }

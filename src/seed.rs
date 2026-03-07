@@ -580,8 +580,8 @@ pub fn puls_fabata_recipe() -> Recipe {
                 heat: Some(HeatLevel::Low),
             },
             CookingStep {
-                instruction: "Mash with a ladle against the side of the pot as it thickens \u{2014} \
-                    maccare. The beans and grain break down into a thick porridge."
+                instruction: "Mash with a ladle against the side of the pot as it thickens. \
+                    The beans and grain break down into a thick porridge."
                     .to_owned(),
                 duration_minutes: Some(30.0),
                 water_ml: None,
